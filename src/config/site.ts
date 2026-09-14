@@ -16,6 +16,8 @@ export type Downloadable = {
   href: string;
 };
 
+const assetBase = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -32,7 +34,7 @@ export const siteConfig = {
     title: "Entrená con Lorena | Curso online de entrenamiento",
     description:
       "Un curso digital de 10 videos para entrenar con técnica, control y constancia, a tu propio ritmo.",
-    ogImage: "/assets/images/og-lorena.webp",
+    ogImage: `${assetBase}/assets/images/og-lorena.webp`,
     themeColor: "#0E0F0D",
   },
   hero: {
@@ -155,23 +157,23 @@ export const siteConfig = {
   },
   images: {
     hero: {
-      desktop: "/assets/images/hero-training-1672.webp",
-      desktopSmall: "/assets/images/hero-training-960.webp",
-      mobile: "/assets/images/hero-training-mobile-1122.webp",
-      mobileSmall: "/assets/images/hero-training-mobile-720.webp",
+      desktop: `${assetBase}/assets/images/hero-training-1672.webp`,
+      desktopSmall: `${assetBase}/assets/images/hero-training-960.webp`,
+      mobile: `${assetBase}/assets/images/hero-training-mobile-1122.webp`,
+      mobileSmall: `${assetBase}/assets/images/hero-training-mobile-720.webp`,
     },
     method: {
-      large: "/assets/images/method-movement-2170.webp",
-      small: "/assets/images/method-movement-1080.webp",
+      large: `${assetBase}/assets/images/method-movement-2170.webp`,
+      small: `${assetBase}/assets/images/method-movement-1080.webp`,
     },
     instructor: {
-      large: "/assets/images/instructor-placeholder-1122.webp",
-      small: "/assets/images/instructor-placeholder-720.webp",
+      large: `${assetBase}/assets/images/instructor-placeholder-1122.webp`,
+      small: `${assetBase}/assets/images/instructor-placeholder-720.webp`,
       isPlaceholder: true,
     },
     final: {
-      large: "/assets/images/final-training-1672.webp",
-      small: "/assets/images/final-training-960.webp",
+      large: `${assetBase}/assets/images/final-training-1672.webp`,
+      small: `${assetBase}/assets/images/final-training-960.webp`,
     },
   },
 } as const;
