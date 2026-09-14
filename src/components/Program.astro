@@ -1,0 +1,54 @@
+---
+import SectionMarker from "./SectionMarker.astro";
+import { siteConfig } from "../config/site";
+
+const { course } = siteConfig;
+---
+
+<section id="contenidos" class="program section-dark" aria-labelledby="program-title">
+  <div class="page-shell">
+    <div class="program__header">
+      <div>
+        <SectionMarker number="02" label="Qué recibís" tone="dark" />
+        <h2 id="program-title" class="display-heading" data-reveal>El curso, video por video.</h2>
+      </div>
+      <p class="program__count" data-reveal>{course.videoCount} videos · {course.materialLabel}</p>
+    </div>
+
+    <ol class="lesson-index" aria-label="Índice provisional del curso">
+      {course.lessons.map((lesson) => (
+        <li class="lesson" data-reveal data-row data-provisional={String(lesson.provisional)}>
+          <span class="lesson__number" aria-hidden="true">{lesson.number}</span>
+          <span class="lesson__title">{lesson.title}</span>
+          <span
+            class:list={["lesson__duration", !lesson.duration && "lesson__duration--pending"]}
+            aria-label={lesson.duration ? `Duración ${lesson.duration}` : "Duración pendiente"}
+          >
+            {lesson.duration ?? "—"}
+          </span>
+        </li>
+      ))}
+    </ol>
+
+    <div class="course-notes" data-reveal>
+      <article>
+        <p class="micro-label">Material descargable</p>
+        <h3>Material para acompañar la práctica.</h3>
+        {course.downloadables.length > 0 ? (
+          <ul class="course-downloads">
+            {course.downloadables.map((downloadable) => (
+              <li><a href={downloadable.href}>{downloadable.label}</a></li>
+            ))}
+          </ul>
+        ) : (
+          <p class="pending-note">Cantidad y títulos finales pendientes.</p>
+        )}
+      </article>
+      <article>
+        <p class="micro-label">Cómo se ve</p>
+        <h3>Acceso digital, modalidad por confirmar.</h3>
+        <p class="pending-note">Plataforma y duración del acceso por confirmar.</p>
+      </article>
+    </div>
+  </div>
+</section>

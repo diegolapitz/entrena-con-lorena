@@ -1,0 +1,44 @@
+---
+import { siteConfig } from "../config/site";
+---
+
+<section class="faq section-dark" aria-labelledby="faq-title">
+  <div class="faq__inner">
+    <h2 id="faq-title" class="display-heading" data-reveal>Preguntas frecuentes.</h2>
+    <div class="faq-list" data-faq-list>
+      {siteConfig.faq.map((item, index) => {
+        const triggerId = `faq-trigger-${index + 1}`;
+        const panelId = `faq-panel-${index + 1}`;
+        return (
+          <article class="faq-item" data-faq-item data-open="true">
+            <h3>
+              <button
+                id={triggerId}
+                class="faq-question"
+                type="button"
+                aria-expanded="true"
+                aria-controls={panelId}
+                data-faq-trigger
+              >
+                <span>{item.question}</span>
+                <span class="faq-question__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              id={panelId}
+              class="faq-answer"
+              role="region"
+              aria-labelledby={triggerId}
+              data-faq-panel
+            >
+              <div>
+                <p>{item.answer}</p>
+                {item.provisional && <span class="sr-only">Contenido provisional.</span>}
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

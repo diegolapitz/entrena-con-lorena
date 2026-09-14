@@ -1,0 +1,41 @@
+---
+import SectionMarker from "./SectionMarker.astro";
+import { siteConfig } from "../config/site";
+
+const { method, images } = siteConfig;
+---
+
+<section id="metodo" class="method section-light" aria-labelledby="method-title">
+  <div class="page-shell method__grid">
+    <div class="method__heading">
+      <SectionMarker number="01" label="El método" tone="light" />
+      <h2 id="method-title" class="display-heading method__title" data-reveal>{method.title}</h2>
+    </div>
+
+    <div class="principles">
+      {method.principles.map((principle) => (
+        <article class="principle" data-reveal data-provisional={String(principle.provisional)}>
+          <span class="principle__number" aria-hidden="true">{principle.number}</span>
+          <h3>{principle.name}</h3>
+          <p>{principle.description}</p>
+        </article>
+      ))}
+      <a class="text-link text-link--light principles__link" href="#contenidos" data-reveal>
+        Ver el programa
+      </a>
+    </div>
+  </div>
+
+  <div class="method__media" data-reveal>
+    <img
+      src={images.method.large}
+      srcset={`${images.method.small} 1080w, ${images.method.large} 2170w`}
+      sizes="100vw"
+      width="2170"
+      height="725"
+      alt="Detalle de una atleta preparando un movimiento de fuerza con postura y agarre controlados"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>

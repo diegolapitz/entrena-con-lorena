@@ -1,0 +1,19 @@
+---
+import { commercialHref, hasCheckout, priceDisplay, siteConfig } from "../config/site";
+---
+
+<aside class="sticky-buy" aria-label="Compra rápida" data-sticky-buy inert>
+  <div class="sticky-buy__price">
+    <strong>{siteConfig.course.price ? priceDisplay : "Curso online"}</strong>
+    <span>{siteConfig.course.price ? "pago único" : `${siteConfig.course.videoCount} videos`}</span>
+  </div>
+  <a
+    class="button button--small"
+    href={commercialHref}
+    data-commercial-cta
+    data-cta-position="barra_fija"
+    data-checkout-ready={String(hasCheckout)}
+  >
+    Comprar
+  </a>
+</aside>

@@ -1,0 +1,19 @@
+---
+const isDevelopment = import.meta.env.DEV;
+---
+
+<dialog class="checkout-dialog" data-checkout-dialog aria-labelledby="checkout-dialog-title">
+  <div class="checkout-dialog__rule" aria-hidden="true"></div>
+  <p class="micro-label">Compra todavía no habilitada</p>
+  <h2 id="checkout-dialog-title">El checkout está listo para conectar.</h2>
+  <p>
+    Cuando se definan el precio y el enlace de pago, todos los botones de compra se actualizarán desde una sola configuración.
+  </p>
+  {isDevelopment && (
+    <p class="checkout-dialog__config">Editar: <code>src/config/site.ts</code></p>
+  )}
+  <button class="button" type="button" data-dialog-close>Entendido</button>
+  <form method="dialog">
+    <button class="checkout-dialog__close" value="close" aria-label="Cerrar aviso">×</button>
+  </form>
+</dialog>

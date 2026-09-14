@@ -1,0 +1,14 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  tone?: "dark" | "light" | "olive";
+}
+
+const { number, label, tone = "dark" } = Astro.props;
+---
+
+<div class:list={["section-marker", `section-marker--${tone}`]} data-reveal>
+  <span aria-hidden="true">{number}</span>
+  <span>{label}</span>
+</div>

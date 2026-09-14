@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CheckoutNotice from "../components/CheckoutNotice.astro";
+import Faq from "../components/Faq.astro";
+import FinalCta from "../components/FinalCta.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Instructor from "../components/Instructor.astro";
+import Method from "../components/Method.astro";
+import Program from "../components/Program.astro";
+import Purchase from "../components/Purchase.astro";
+import StickyBuyBar from "../components/StickyBuyBar.astro";
+import Testimonials from "../components/Testimonials.astro";
+---
+
+<BaseLayout>
+  <Header />
+  <main id="contenido" tabindex="-1">
+    <Hero />
+    <Method />
+    <Program />
+    <Instructor />
+    <Testimonials />
+    <Purchase />
+    <Faq />
+    <FinalCta />
+  </main>
+  <Footer />
+  <StickyBuyBar />
+  <CheckoutNotice />
+  <script src="../scripts/site.ts"></script>
+</BaseLayout>

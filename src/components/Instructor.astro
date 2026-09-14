@@ -1,0 +1,43 @@
+---
+import SectionMarker from "./SectionMarker.astro";
+import { siteConfig } from "../config/site";
+
+const { instructor, images, instructorName } = siteConfig;
+---
+
+<section id="lorena" class="instructor" aria-labelledby="instructor-title">
+  <figure class:list={["instructor__media", images.instructor.isPlaceholder && "instructor__media--placeholder"]}>
+    <img
+      src={images.instructor.large}
+      srcset={`${images.instructor.small} 720w, ${images.instructor.large} 1122w`}
+      sizes="(max-width: 860px) 100vw, 50vw"
+      width="1122"
+      height="1402"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+    {images.instructor.isPlaceholder && (
+      <figcaption class="instructor__placeholder">
+        <span>Imagen provisoria</span>
+        <strong>Retrato de {instructorName} pendiente</strong>
+      </figcaption>
+    )}
+  </figure>
+
+  <div class="instructor__content">
+    <div>
+      <SectionMarker number="03" label="Quién enseña" tone="olive" />
+      <h2 id="instructor-title" class="display-heading" data-reveal>{instructor.heading}</h2>
+      <p class="instructor__name" data-reveal>{instructorName}</p>
+      <p class="instructor__intro" data-reveal>{instructor.introduction}</p>
+      <p class="content-status" data-reveal>{instructor.bioStatus}</p>
+      {instructor.quote && (
+        <blockquote data-reveal>
+          <p>{instructor.quote}</p>
+          <cite>— {instructorName}</cite>
+        </blockquote>
+      )}
+    </div>
+  </div>
+</section>

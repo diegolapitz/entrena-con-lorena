@@ -1,0 +1,26 @@
+---
+import { commercialHref, hasCheckout, siteConfig } from "../config/site";
+---
+
+<header class="site-header" data-site-header>
+  <a class="brand-link" href="#top" aria-label={`${siteConfig.shortBrandName}, volver al inicio`}>
+    {siteConfig.shortBrandName}
+  </a>
+
+  <nav class="main-nav" aria-label="Navegación principal">
+    <div class="main-nav__links">
+      <a href="#metodo">Método</a>
+      <a href="#contenidos">Contenidos</a>
+      <a href="#lorena">Lorena</a>
+    </div>
+    <a
+      class="button button--small"
+      href={commercialHref}
+      data-commercial-cta
+      data-cta-position="nav"
+      data-checkout-ready={String(hasCheckout)}
+    >
+      Comprar
+    </a>
+  </nav>
+</header>

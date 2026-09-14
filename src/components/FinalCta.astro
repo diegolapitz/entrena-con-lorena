@@ -1,0 +1,40 @@
+---
+import SectionMarker from "./SectionMarker.astro";
+import { commercialHref, hasCheckout, priceDisplay, siteConfig } from "../config/site";
+
+const { finalCta, images, course } = siteConfig;
+---
+
+<section class="final-cta" aria-labelledby="final-title" data-final-cta>
+  <div class="final-cta__media" aria-hidden="true">
+    <img
+      src={images.final.large}
+      srcset={`${images.final.small} 960w, ${images.final.large} 1672w`}
+      sizes="100vw"
+      width="1672"
+      height="941"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="final-cta__scrim" aria-hidden="true"></div>
+  <div class="page-shell final-cta__content">
+    <SectionMarker number="05" label={finalCta.marker} tone="dark" />
+    <h2 id="final-title" class="final-cta__title" data-reveal>
+      <span>{finalCta.titleLead}</span>
+      <span class="text-olive-light">{finalCta.titleAccent}</span>
+    </h2>
+    <a
+      class="button"
+      href={commercialHref}
+      data-commercial-cta
+      data-cta-position="cierre"
+      data-checkout-ready={String(hasCheckout)}
+      data-reveal
+    >
+      {finalCta.cta}
+    </a>
+    {course.price && <p class="final-cta__price" data-reveal>{priceDisplay} · pago único</p>}
+  </div>
+</section>

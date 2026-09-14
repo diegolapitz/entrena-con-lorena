@@ -1,0 +1,25 @@
+---
+import { siteConfig } from "../config/site";
+
+const visibleTestimonials = siteConfig.testimonials.items.filter(
+  (testimonial) => testimonial.consentConfirmed,
+);
+
+const shouldRender = siteConfig.testimonials.show && visibleTestimonials.length > 0;
+---
+
+{shouldRender && (
+  <section class="testimonials section-light" aria-labelledby="testimonials-title">
+    <div class="page-shell">
+      <h2 id="testimonials-title" class="display-heading">Experiencias reales.</h2>
+      <div class="testimonials__list">
+        {visibleTestimonials.map((testimonial) => (
+          <figure>
+            <blockquote>{testimonial.quote}</blockquote>
+            <figcaption>{testimonial.name}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

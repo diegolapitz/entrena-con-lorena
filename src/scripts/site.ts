@@ -1,0 +1,160 @@
+type AnalyticsPayload = Record<string, string | number | boolean | null>;
+
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>;
+  }
+}
+
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function trackEvent(event: string, payload: AnalyticsPayload = {}) {
+  const detail = { event, ...payload };
+  window.dispatchEvent(new CustomEvent("lorena:analytics", { detail }));
+  window.dataLayer?.push(detail);
+}
+
+function setupFaq() {
+  const list = document.querySelector<HTMLElement>("[data-faq-list]");
+  if (!list) return;
+
+  list.dataset.enhanced = "true";
+  const items = Array.from(list.querySelectorAll<HTMLElement>("[data-faq-item]"));
+
+  for (const item of items) {
+    const trigger = item.querySelector<HTMLButtonElement>("[data-faq-trigger]");
+    const panel = item.querySelector<HTMLElement>("[data-faq-panel]");
+    if (!trigger || !panel) continue;
+
+    item.dataset.open = "false";
+    trigger.setAttribute("aria-expanded", "false");
+    panel.setAttribute("aria-hidden", "true");
+
+    trigger.addEventListener("click", () => {
+      const open = item.dataset.open === "true";
+      item.dataset.open = String(!open);
+      trigger.setAttribute("aria-expanded", String(!open));
+      panel.setAttribute("aria-hidden", String(open));
+      if (!open) {
+        const question = trigger.querySelector("span")?.textContent?.trim() ?? "";
+        trackEvent("faq_open", { question });
+      }
+    });
+  }
+}
+
+function setupCheckout() {
+  const dialog = document.querySelector<HTMLDialogElement>("[data-checkout-dialog]");
+  const closeButton = dialog?.querySelector<HTMLButtonElement>("[data-dialog-close]");
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as Element | null;
+    const cta = target?.closest<HTMLElement>("[data-commercial-cta]");
+    if (!cta) return;
+
+    const position = cta.dataset.ctaPosition ?? "unknown";
+    const checkoutReady = cta.dataset.checkoutReady === "true";
+    trackEvent("cta_click", { position, checkoutReady });
+
+    if (checkoutReady) {
+      trackEvent("checkout_click", { position });
+      return;
+    }
+
+    if (cta.hasAttribute("data-checkout-final") && dialog) {
+      event.preventDefault();
+      dialog.showModal();
+    }
+  });
+
+  closeButton?.addEventListener("click", () => dialog?.close());
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+}
+
+function setupReveal() {
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+
+  const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        (entry.target as HTMLElement).classList.add("is-revealed");
+        observer.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -9% 0px", threshold: 0.08 },
+  );
+
+  targets.forEach((target) => observer.observe(target));
+}
+
+function setupPricingView() {
+  const pricing = document.querySelector<HTMLElement>("[data-pricing]");
+  if (!pricing || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry?.isIntersecting) return;
+      trackEvent("view_pricing");
+      observer.disconnect();
+    },
+    { threshold: 0.3 },
+  );
+  observer.observe(pricing);
+}
+
+function setupScrollState() {
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const hero = document.querySelector<HTMLElement>("[data-hero]");
+  const sticky = document.querySelector<HTMLElement>("[data-sticky-buy]");
+  const pricing = document.querySelector<HTMLElement>("[data-pricing]");
+  const finalCta = document.querySelector<HTMLElement>("[data-final-cta]");
+  if (!header || !hero || !sticky || !pricing || !finalCta) return;
+
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    const y = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const headerSolid = y > viewportHeight * 0.7;
+    header.classList.toggle("is-solid", headerSolid);
+
+    const heroPassed = y > hero.offsetHeight * 0.9;
+    const pricingRect = pricing.getBoundingClientRect();
+    const finalRect = finalCta.getBoundingClientRect();
+    const overlapsDecisionArea =
+      pricingRect.top < viewportHeight * 0.82 || finalRect.top < viewportHeight;
+    const nearPageEnd = y + viewportHeight > document.documentElement.scrollHeight - 240;
+    const shouldShow = heroPassed && !overlapsDecisionArea && !nearPageEnd;
+
+    sticky.classList.toggle("is-visible", shouldShow);
+    if (shouldShow) sticky.removeAttribute("inert");
+    else sticky.setAttribute("inert", "");
+  };
+
+  const scheduleUpdate = () => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate, { passive: true });
+}
+
+setupFaq();
+setupCheckout();
+setupReveal();
+setupPricingView();
+setupScrollState();
+
+reducedMotion.addEventListener("change", () => {
+  document.querySelectorAll("[data-reveal]").forEach((element) => {
+    element.classList.toggle("is-revealed", !reducedMotion.matches);
+  });
+});
+
+export {};

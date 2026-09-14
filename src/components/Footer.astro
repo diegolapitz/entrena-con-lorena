@@ -1,0 +1,19 @@
+---
+import { siteConfig } from "../config/site";
+
+const links = [
+  { label: "Instagram", href: siteConfig.socialLinks.instagram },
+  { label: "Contacto", href: siteConfig.socialLinks.contact },
+  { label: "Términos", href: siteConfig.legalLinks.terms },
+  { label: "Privacidad", href: siteConfig.legalLinks.privacy },
+].filter((link) => link.href);
+---
+
+<footer class="site-footer">
+  <p>{siteConfig.brandName}</p>
+  {links.length > 0 ? (
+    <nav aria-label="Enlaces del pie">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  ) : null}
+</footer>

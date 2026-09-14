@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Jost:wght@300;400;500&family=Archivo:wdth,wght@75,600;75,700;100,400;100,500;100,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#D9D4C8; }
+  a { color:#8A6B22; text-decoration:none; }
+  a:hover { color:#121311; }
+  @keyframes drift { 0%{transform:scale(1.06) translate3d(0,0,0)} 50%{transform:scale(1.11) translate3d(-1.4%,-1.2%,0)} 100%{transform:scale(1.06) translate3d(0,0,0)} }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes sweep { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important} }
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:26px;padding:72px 64px 120px;font-family:'Jost',sans-serif;color:#121311">
+
+  <div style="display:flex;align-items:baseline;gap:18px;max-width:1100px">
+    <h1 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em">Entrená con Lorena · dos direcciones</h1>
+  </div>
+  <p style="margin:0 0 22px;max-width:78ch;font-size:17px;line-height:1.65;color:#3B3B33">Sólo hero desktop, hero mobile y una segunda sección por dirección, más los sistemas que las sostienen. Todo el copy es provisional y las fotos son cajas para reemplazar con material real: podés arrastrar imágenes encima de cada hueco. No hay testimonios, cifras ni promesas inventadas.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:96px;align-items:flex-start">
+
+    <!-- ══════════════════ 1a ══════════════════ -->
+    <div id="1a" style="width:1360px;display:flex;flex-direction:column;gap:34px">
+
+      <div style="display:flex;align-items:baseline;gap:16px">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.18em;background:#121311;color:#EDE6D6;padding:7px 12px 5px">1a</span>
+        <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em">Dirección A — Nocturno editorial</h2>
+      </div>
+      <p style="margin:-14px 0 0;max-width:74ch;font-size:16px;line-height:1.65;color:#3B3B33">La estética aprobada, pero tratada como campaña y no como plantilla fitness. Negro profundo casi total, oliva sólo como plano de fondo grande, crema para el texto largo, dorado apagado reservado a lo que se puede tocar. La foto ocupa el 100 % del hero y la tipografía condensada se comporta como titular impreso: pocas palabras, muy grandes, con aire alrededor. Reglas finas de 1 px en vez de tarjetas, y una sola columna de lectura.</p>
+
+      <!-- hero desktop -->
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:10px">HERO DESKTOP</div>
+        <div style="position:relative;width:1360px;height:766px;overflow:hidden;background:#0E0F0D;box-shadow:0 20px 60px rgba(14,15,13,.25)">
+          <div style="position:absolute;inset:0;animation:drift 26s ease-in-out infinite">
+            <image-slot id="a-hero" shape="rect" placeholder="FOTO PROVISORIA — plano medio, luz lateral dura, fondo negro, mirada fuera de cámara"></image-slot>
+          </div>
+          <div style="position:absolute;inset:0;background:linear-gradient(97deg,rgba(14,15,13,.94) 0%,rgba(14,15,13,.78) 38%,rgba(14,15,13,.10) 78%,rgba(14,15,13,.45) 100%)"></div>
+
+          <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 48px">
+            <div style="font-family:'Barlow Condensed',sans-serif;color:#EDE6D6;font-size:16px;letter-spacing:.3em;font-weight:600">LORENA</div>
+            <div style="display:flex;align-items:center;gap:34px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;color:rgba(237,230,214,.72)">
+              <span>MÉTODO</span><span>CONTENIDOS</span><span>LORENA</span>
+              <span style="background:#C8A45C;color:#0E0F0D;padding:11px 22px 9px;letter-spacing:.2em;font-weight:600">COMPRAR</span>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:48px;bottom:104px;width:660px">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+              <span style="width:44px;height:1px;background:#C8A45C"></span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;color:#C8A45C">CURSO ONLINE · 10 VIDEOS</span>
+            </div>
+            <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:104px;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:#EDE6D6">Técnica<br>antes que<br><span style="color:#9AA377">intensidad</span></h3>
+            <p style="margin:28px 0 0;max-width:44ch;font-size:18px;line-height:1.6;font-weight:300;color:rgba(237,230,214,.82)">Diez videos para aprender a moverte bien y sostenerlo. Copy provisional.</p>
+            <div style="display:flex;align-items:center;gap:26px;margin-top:36px">
+              <span style="background:#C8A45C;color:#0E0F0D;font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:.2em;font-weight:600;padding:17px 34px 14px">COMPRAR EL CURSO</span>
+              <span style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(237,230,214,.6)">$ [precio] · acceso inmediato</span>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:0;right:0;bottom:0;border-top:1px solid rgba(237,230,214,.16);display:flex">
+            <div style="flex:1;padding:16px 48px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;color:rgba(237,230,214,.5)">10 VIDEOS</div>
+            <div style="flex:1;padding:16px 24px;border-left:1px solid rgba(237,230,214,.16);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;color:rgba(237,230,214,.5)">2 PDF</div>
+            <div style="flex:1;padding:16px 24px;border-left:1px solid rgba(237,230,214,.16);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;color:rgba(237,230,214,.5)">A TU RITMO</div>
+            <div style="flex:1;padding:16px 24px;border-left:1px solid rgba(237,230,214,.16);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;color:rgba(237,230,214,.5)">SIN EQUIPAMIENTO*</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:34px;align-items:flex-start">
+        <!-- hero mobile -->
+        <div style="flex:none">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:10px">HERO MOBILE</div>
+          <div style="position:relative;width:390px;height:800px;overflow:hidden;background:#0E0F0D;box-shadow:0 16px 44px rgba(14,15,13,.22)">
+            <div style="position:absolute;inset:0;bottom:38%">
+              <image-slot id="a-hero-m" shape="rect" placeholder="FOTO PROVISORIA — vertical"></image-slot>
+            </div>
+            <div style="position:absolute;left:0;right:0;top:0;height:66%;background:linear-gradient(180deg,rgba(14,15,13,.85) 0%,rgba(14,15,13,.1) 40%,rgba(14,15,13,.95) 100%)"></div>
+            <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px 20px">
+              <span style="font-family:'Barlow Condensed',sans-serif;color:#EDE6D6;font-size:14px;letter-spacing:.3em;font-weight:600">LORENA</span>
+              <span style="width:22px;height:9px;border-top:1px solid #EDE6D6;border-bottom:1px solid #EDE6D6"></span>
+            </div>
+            <div style="position:absolute;left:20px;right:20px;top:52%">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.3em;color:#C8A45C;margin-bottom:16px">CURSO ONLINE · 10 VIDEOS</div>
+              <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:58px;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:#EDE6D6">Técnica<br>antes que<br><span style="color:#9AA377">intensidad</span></h3>
+              <p style="margin:20px 0 0;font-size:15px;line-height:1.55;font-weight:300;color:rgba(237,230,214,.78)">Diez videos para aprender a moverte bien y sostenerlo.</p>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:16px 20px 22px;background:#0E0F0D;border-top:1px solid rgba(237,230,214,.16);display:flex;flex-direction:column;gap:10px">
+              <div style="background:#C8A45C;color:#0E0F0D;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:.2em;font-weight:600;padding:16px 0 13px">COMPRAR EL CURSO</div>
+              <div style="text-align:center;font-size:13px;color:rgba(237,230,214,.55)">$ [precio] · acceso inmediato</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;width:390px;font-size:13.5px;line-height:1.55;color:#55554B">Barra de compra fija al pie desde el primer scroll: quien llega decidido compra sin leer nada.</div>
+        </div>
+
+        <!-- segunda sección -->
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:10px">SEGUNDA SECCIÓN — EL MÉTODO</div>
+          <div style="background:#4A503C;padding:74px 60px 60px;color:#EDE6D6">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:52px">
+              <span style="width:44px;height:1px;background:#C8A45C"></span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;color:#C8A45C">EL MÉTODO</span>
+            </div>
+            <h3 style="margin:0 0 56px;font-family:'Barlow Condensed',sans-serif;font-size:62px;line-height:.98;font-weight:700;text-transform:uppercase;letter-spacing:-.015em;max-width:16ch">No necesitás entrenar más. Necesitás entrenar mejor.</h3>
+            <div style="display:flex;flex-direction:column">
+              <div style="display:flex;gap:34px;padding:26px 0;border-top:1px solid rgba(237,230,214,.22)">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;color:#C8A45C;width:34px;flex:none;padding-top:6px">01</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:34px;text-transform:uppercase;width:210px;flex:none;line-height:1">Técnica</span>
+                <span style="font-size:16px;line-height:1.6;font-weight:300;color:rgba(237,230,214,.8);max-width:46ch">Descripción provisional del principio. Se reemplaza con las palabras de Lorena.</span>
+              </div>
+              <div style="display:flex;gap:34px;padding:26px 0;border-top:1px solid rgba(237,230,214,.22)">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;color:#C8A45C;width:34px;flex:none;padding-top:6px">02</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:34px;text-transform:uppercase;width:210px;flex:none;line-height:1">Control</span>
+                <span style="font-size:16px;line-height:1.6;font-weight:300;color:rgba(237,230,214,.8);max-width:46ch">Descripción provisional del principio.</span>
+              </div>
+              <div style="display:flex;gap:34px;padding:26px 0;border-top:1px solid rgba(237,230,214,.22);border-bottom:1px solid rgba(237,230,214,.22)">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;color:#C8A45C;width:34px;flex:none;padding-top:6px">03</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:34px;text-transform:uppercase;width:210px;flex:none;line-height:1">Constancia</span>
+                <span style="font-size:16px;line-height:1.6;font-weight:300;color:rgba(237,230,214,.8);max-width:46ch">Descripción provisional del principio.</span>
+              </div>
+            </div>
+            <div style="margin-top:52px;height:300px;position:relative;overflow:hidden">
+              <image-slot id="a-metodo" shape="rect" placeholder="FOTO PROVISORIA — detalle de ejecución, apaisada, muy recortada"></image-slot>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sistema A -->
+      <div style="display:flex;gap:30px;flex-wrap:wrap;margin-top:8px">
+        <div style="flex:1;min-width:300px;background:#EDE6D6;padding:26px 26px 30px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:18px">PALETA</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+            <div><div style="height:64px;background:#0E0F0D"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#0E0F0D negro</div></div>
+            <div><div style="height:64px;background:#1D1F1B"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#1D1F1B charcoal</div></div>
+            <div><div style="height:64px;background:#4A503C"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#4A503C oliva</div></div>
+            <div><div style="height:64px;background:#9AA377"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#9AA377 oliva claro</div></div>
+            <div><div style="height:64px;background:#EDE6D6;border:1px solid #C9C2B2"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#EDE6D6 crema</div></div>
+            <div><div style="height:64px;background:#C8A45C"></div><div style="font-size:11.5px;margin-top:6px;letter-spacing:.04em">#C8A45C dorado</div></div>
+          </div>
+          <p style="margin:16px 0 0;font-size:13.5px;line-height:1.55;color:#55554B">70 % negro, 20 % oliva, crema para leer, dorado sólo en botones y numeración. Dos fondos en toda la página, nada más.</p>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#EDE6D6;padding:26px 26px 30px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:18px">TIPOGRAFÍA</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:52px;line-height:.95;font-weight:700;text-transform:uppercase;letter-spacing:-.02em">Barlow Condensed</div>
+          <div style="font-size:12.5px;color:#6B6B60;margin:6px 0 20px;letter-spacing:.04em">Display 700 · uppercase · tracking −2 %</div>
+          <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:19px;line-height:1.55">Jost Light para lectura: neutra, geométrica, sin gesto fitness.</div>
+          <div style="font-size:12.5px;color:#6B6B60;margin-top:6px;letter-spacing:.04em">Texto 300/400 · 17–19 px</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.3em;margin-top:20px;color:#8A6B22">ETIQUETAS EN CONDENSED +30</div>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#EDE6D6;padding:26px 26px 30px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#6B6B60;margin-bottom:18px">FOTOGRAFÍA</div>
+          <div style="display:flex;gap:8px;height:120px">
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="a-ref1" shape="rect" placeholder="ref 1"></image-slot></div>
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="a-ref2" shape="rect" placeholder="ref 2"></image-slot></div>
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="a-ref3" shape="rect" placeholder="ref 3"></image-slot></div>
+          </div>
+          <p style="margin:14px 0 0;font-size:13.5px;line-height:1.6;color:#55554B">Luz lateral dura sobre fondo negro, sombras cerradas, piel cálida. Cuerpo entero o detalle muy recortado, nunca plano medio genérico de gimnasio. Sin sonrisa a cámara, sin pesas enormes: gesto técnico en mitad del movimiento.</p>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#1D1F1B;color:#EDE6D6;padding:26px 26px 30px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;color:#C8A45C;margin-bottom:18px">MOVIMIENTO</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.55;font-weight:300;color:rgba(237,230,214,.85)">
+            <div style="display:flex;gap:12px"><span style="color:#C8A45C;font-family:'Barlow Condensed',sans-serif">01</span><span>Loop de video de 6 s en el hero, sin audio, con un leve zoom continuo (ya está corriendo arriba).</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C8A45C;font-family:'Barlow Condensed',sans-serif">02</span><span>Titular que entra por línea, con 80 ms de diferencia entre renglones.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C8A45C;font-family:'Barlow Condensed',sans-serif">03</span><span>Parallax de 6 % sobre las fotos: la imagen se mueve más lento que el texto.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C8A45C;font-family:'Barlow Condensed',sans-serif">04</span><span>Momento memorable: al entrar a «El método», el fondo pasa de negro a oliva en 600 ms mientras la foto se recorta de alto completo a franja.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C8A45C;font-family:'Barlow Condensed',sans-serif">05</span><span>Nada rebota ni gira. Todo son fundidos y desplazamientos de 12–20 px.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 1b ══════════════════ -->
+    <div id="1b" style="width:1360px;display:flex;flex-direction:column;gap:34px">
+
+      <div style="display:flex;align-items:baseline;gap:16px">
+        <span style="font-family:'Archivo',sans-serif;font-size:15px;letter-spacing:.14em;background:#17180F;color:#F4EFE3;padding:7px 12px 5px">1b</span>
+        <h2 style="margin:0;font-family:'Archivo',sans-serif;font-size:34px;font-weight:700;letter-spacing:-.03em">Dirección B — Luz y movilidad</h2>
+      </div>
+      <p style="margin:-14px 0 0;max-width:74ch;font-size:16px;line-height:1.65;color:#3B3B33">La misma marca leída con luz de día. Crema como fondo dominante, negro para bloques de peso, oliva para las zonas de contenido y dorado sólo en el precio y el botón. La foto deja de ser fondo y pasa a ser recorte: paneles verticales, cuerpo en movimiento, sombras abiertas. La tipografía es grotesca ancha con tracking negativo, más contemporánea que deportiva, y el ritmo lo dan los espacios en blanco y una regla horizontal continua. Sigue siendo entrenamiento serio: el carácter viene del contraste y del tamaño, no de la oscuridad.</p>
+
+      <!-- hero desktop -->
+      <div>
+        <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:10px">HERO DESKTOP</div>
+        <div style="position:relative;width:1360px;height:766px;overflow:hidden;background:#F4EFE3;box-shadow:0 20px 60px rgba(23,24,15,.18)">
+          <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 44px;z-index:3">
+            <div style="font-family:'Archivo',sans-serif;color:#17180F;font-size:16px;letter-spacing:.22em;font-weight:600">LORENA</div>
+            <div style="display:flex;align-items:center;gap:32px;font-family:'Archivo',sans-serif;font-size:13px;letter-spacing:.1em;color:#4B4C3E">
+              <span>Método</span><span>Contenidos</span><span>Lorena</span>
+              <span style="background:#17180F;color:#F4EFE3;padding:11px 22px;letter-spacing:.08em;font-weight:600">Comprar</span>
+            </div>
+          </div>
+
+          <div style="position:absolute;right:0;top:0;bottom:0;width:47%;background:#59614A;overflow:hidden">
+            <div style="position:absolute;inset:0;animation:drift 30s ease-in-out infinite">
+              <image-slot id="b-hero" shape="rect" placeholder="FOTO PROVISORIA — cuerpo entero en movimiento, luz natural, fondo claro"></image-slot>
+            </div>
+          </div>
+          <div style="position:absolute;right:47%;top:118px;bottom:120px;width:1px;background:rgba(23,24,15,.18)"></div>
+
+          <div style="position:absolute;left:44px;top:184px;width:640px">
+            <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.26em;color:#7C7D68;margin-bottom:26px">CURSO ONLINE · 10 VIDEOS + 2 PDF</div>
+            <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:86px;line-height:.94;letter-spacing:-.045em;color:#17180F">Moverte<br>mejor,<br><span style="color:#59614A">todos<br>los días.</span></h3>
+            <p style="margin:32px 0 0;max-width:40ch;font-family:'Source Sans 3',sans-serif;font-size:19px;line-height:1.6;color:#43443A">Un método para entrenar con criterio: técnica, movilidad y constancia. Copy provisional.</p>
+            <div style="display:flex;align-items:center;gap:22px;margin-top:40px">
+              <span style="background:#17180F;color:#F4EFE3;font-family:'Archivo',sans-serif;font-size:16px;font-weight:600;letter-spacing:.02em;padding:18px 32px">Comprar el curso</span>
+              <span style="font-family:'Archivo',sans-serif;font-size:16px;color:#8A6B22;border-bottom:1px solid #C9A227;padding-bottom:3px">Ver qué incluye</span>
+            </div>
+            <div style="margin-top:34px;font-family:'Source Sans 3',sans-serif;font-size:15px;color:#6B6B60">$ [precio] · pago único · acceso inmediato</div>
+          </div>
+
+          <div style="position:absolute;left:0;right:0;bottom:0;height:52px;background:#17180F;overflow:hidden;display:flex;align-items:center">
+            <div style="display:flex;gap:48px;white-space:nowrap;animation:ticker 34s linear infinite;font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.26em;color:rgba(244,239,227,.72);padding-left:44px">
+              <span>10 VIDEOS</span><span>·</span><span>2 PDF</span><span>·</span><span>A TU RITMO</span><span>·</span><span>DESDE CASA</span><span>·</span><span>ACCESO PERMANENTE*</span><span>·</span>
+              <span>10 VIDEOS</span><span>·</span><span>2 PDF</span><span>·</span><span>A TU RITMO</span><span>·</span><span>DESDE CASA</span><span>·</span><span>ACCESO PERMANENTE*</span><span>·</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:34px;align-items:flex-start">
+        <!-- hero mobile -->
+        <div style="flex:none">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:10px">HERO MOBILE</div>
+          <div style="position:relative;width:390px;height:800px;overflow:hidden;background:#F4EFE3;box-shadow:0 16px 44px rgba(23,24,15,.16)">
+            <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px 20px">
+              <span style="font-family:'Archivo',sans-serif;color:#17180F;font-size:14px;letter-spacing:.22em;font-weight:600">LORENA</span>
+              <span style="width:22px;height:9px;border-top:1.5px solid #17180F;border-bottom:1.5px solid #17180F"></span>
+            </div>
+            <div style="position:absolute;left:20px;right:20px;top:78px">
+              <div style="font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.24em;color:#7C7D68;margin-bottom:16px">CURSO ONLINE · 10 VIDEOS</div>
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:52px;line-height:.94;letter-spacing:-.045em;color:#17180F">Moverte<br>mejor,<br><span style="color:#59614A">todos los días.</span></h3>
+              <p style="margin:20px 0 0;font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.55;color:#43443A">Técnica, movilidad y constancia. Copy provisional.</p>
+            </div>
+            <div style="position:absolute;left:20px;right:0;top:404px;bottom:96px;background:#59614A;overflow:hidden">
+              <image-slot id="b-hero-m" shape="rect" placeholder="FOTO PROVISORIA — vertical, luz natural"></image-slot>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px 20px;background:#F4EFE3;border-top:1px solid rgba(23,24,15,.14);display:flex;align-items:center;gap:14px">
+              <div style="flex:1;font-family:'Source Sans 3',sans-serif;font-size:13px;line-height:1.3;color:#6B6B60">$ [precio]<br><span style="color:#8A6B22">pago único</span></div>
+              <div style="background:#17180F;color:#F4EFE3;font-family:'Archivo',sans-serif;font-size:15px;font-weight:600;padding:15px 26px">Comprar</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;width:390px;font-size:13.5px;line-height:1.55;color:#55554B">En mobile el titular va primero y la foto entra debajo, ya recortada: se lee la promesa antes de ver la imagen.</div>
+        </div>
+
+        <!-- segunda sección -->
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:10px">SEGUNDA SECCIÓN — QUÉ INCLUYE</div>
+          <div style="background:#F4EFE3;padding:66px 56px 56px;color:#17180F;border:1px solid rgba(23,24,15,.12)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:46px;gap:30px">
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-size:56px;line-height:.98;font-weight:700;letter-spacing:-.045em;max-width:14ch">Lo que vas a recibir</h3>
+              <span style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.24em;color:#7C7D68;padding-bottom:10px">10 VIDEOS · 2 PDF</span>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <div style="display:flex;align-items:baseline;gap:26px;padding:20px 0;border-top:1px solid rgba(23,24,15,.16)" style-hover="background:#EAE3D2">
+                <span style="font-family:'Archivo',sans-serif;font-size:13px;color:#8A6B22;width:30px;flex:none">01</span>
+                <span style="font-family:'Archivo',sans-serif;font-size:26px;letter-spacing:-.03em;font-weight:600;flex:1">Título del video 1 [pendiente]</span>
+                <span style="font-family:'Source Sans 3',sans-serif;font-size:15px;color:#6B6B60">00:00</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:26px;padding:20px 0;border-top:1px solid rgba(23,24,15,.16)" style-hover="background:#EAE3D2">
+                <span style="font-family:'Archivo',sans-serif;font-size:13px;color:#8A6B22;width:30px;flex:none">02</span>
+                <span style="font-family:'Archivo',sans-serif;font-size:26px;letter-spacing:-.03em;font-weight:600;flex:1">Título del video 2 [pendiente]</span>
+                <span style="font-family:'Source Sans 3',sans-serif;font-size:15px;color:#6B6B60">00:00</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:26px;padding:20px 0;border-top:1px solid rgba(23,24,15,.16)" style-hover="background:#EAE3D2">
+                <span style="font-family:'Archivo',sans-serif;font-size:13px;color:#8A6B22;width:30px;flex:none">03</span>
+                <span style="font-family:'Archivo',sans-serif;font-size:26px;letter-spacing:-.03em;font-weight:600;flex:1">Título del video 3 [pendiente]</span>
+                <span style="font-family:'Source Sans 3',sans-serif;font-size:15px;color:#6B6B60">00:00</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:26px;padding:20px 0;border-top:1px solid rgba(23,24,15,.16);border-bottom:1px solid rgba(23,24,15,.16);color:#7C7D68">
+                <span style="font-family:'Archivo',sans-serif;font-size:13px;width:30px;flex:none">…</span>
+                <span style="font-family:'Source Sans 3',sans-serif;font-size:16px;flex:1">hasta 10 · la lista completa se carga cuando estén los títulos reales</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:24px;margin-top:44px;align-items:stretch">
+              <div style="flex:1;background:#59614A;color:#F4EFE3;padding:30px 30px 34px">
+                <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.24em;color:rgba(244,239,227,.7);margin-bottom:14px">MATERIAL DESCARGABLE</div>
+                <div style="font-family:'Archivo',sans-serif;font-size:28px;letter-spacing:-.03em;font-weight:600;line-height:1.1">2 PDF con la guía y el plan semanal [provisional]</div>
+              </div>
+              <div style="width:290px;flex:none;position:relative;overflow:hidden;background:#E3DBC9">
+                <image-slot id="b-incluye" shape="rect" placeholder="FOTO — detalle"></image-slot>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sistema B -->
+      <div style="display:flex;gap:30px;flex-wrap:wrap;margin-top:8px">
+        <div style="flex:1;min-width:300px;background:#F4EFE3;padding:26px 26px 30px;border:1px solid rgba(23,24,15,.12)">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:18px">PALETA</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+            <div><div style="height:64px;background:#F4EFE3;border:1px solid #D6CFBD"></div><div style="font-size:11.5px;margin-top:6px">#F4EFE3 crema</div></div>
+            <div><div style="height:64px;background:#E3DBC9"></div><div style="font-size:11.5px;margin-top:6px">#E3DBC9 arena</div></div>
+            <div><div style="height:64px;background:#59614A"></div><div style="font-size:11.5px;margin-top:6px">#59614A oliva</div></div>
+            <div><div style="height:64px;background:#7C855F"></div><div style="font-size:11.5px;margin-top:6px">#7C855F oliva claro</div></div>
+            <div><div style="height:64px;background:#17180F"></div><div style="font-size:11.5px;margin-top:6px">#17180F negro</div></div>
+            <div><div style="height:64px;background:#C9A227"></div><div style="font-size:11.5px;margin-top:6px">#C9A227 dorado</div></div>
+          </div>
+          <p style="margin:16px 0 0;font-size:13.5px;line-height:1.55;color:#55554B">Invierte la proporción: 65 % crema, 20 % oliva, 15 % negro en bloques de peso. El dorado aparece dos o tres veces en toda la página.</p>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#F4EFE3;padding:26px 26px 30px;border:1px solid rgba(23,24,15,.12)">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:18px">TIPOGRAFÍA</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:46px;line-height:1;font-weight:700;letter-spacing:-.045em">Archivo Tight</div>
+          <div style="font-size:12.5px;color:#6B6B60;margin:6px 0 20px">Display 600/700 · caja baja · tracking −4,5 %</div>
+          <div style="font-family:'Source Sans 3',sans-serif;font-weight:300;font-size:19px;line-height:1.55">Source Sans 3 Light para el cuerpo: humanista, cómoda en párrafos largos.</div>
+          <div style="font-size:12.5px;color:#6B6B60;margin-top:6px">Texto 300/400 · 17–19 px</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.24em;margin-top:20px;color:#8A6B22">ETIQUETAS EN ARCHIVO +24</div>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#F4EFE3;padding:26px 26px 30px;border:1px solid rgba(23,24,15,.12)">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#6B6B60;margin-bottom:18px">FOTOGRAFÍA</div>
+          <div style="display:flex;gap:8px;height:120px">
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="b-ref1" shape="rect" placeholder="ref 1"></image-slot></div>
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="b-ref2" shape="rect" placeholder="ref 2"></image-slot></div>
+            <div style="flex:1;position:relative;overflow:hidden"><image-slot id="b-ref3" shape="rect" placeholder="ref 3"></image-slot></div>
+          </div>
+          <p style="margin:14px 0 0;font-size:13.5px;line-height:1.6;color:#55554B">Luz natural, sombras abiertas, fondos neutros de estudio o pared clara. Movimiento real y algo de barrido: transiciones entre posiciones, no poses. Encuadres verticales recortados por el borde del panel.</p>
+        </div>
+
+        <div style="flex:1;min-width:300px;background:#17180F;color:#F4EFE3;padding:26px 26px 30px">
+          <div style="font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.2em;color:#C9A227;margin-bottom:18px">MOVIMIENTO</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:14px;line-height:1.55;color:rgba(244,239,227,.85)">
+            <div style="display:flex;gap:12px"><span style="color:#C9A227;font-family:'Archivo',sans-serif">01</span><span>El panel de foto crece de 47 % a 54 % del ancho mientras se hace scroll en el hero.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C9A227;font-family:'Archivo',sans-serif">02</span><span>Cinta inferior en movimiento continuo con los datos del curso (visible arriba).</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C9A227;font-family:'Archivo',sans-serif">03</span><span>Las líneas de la lista se dibujan de izquierda a derecha al entrar en pantalla.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C9A227;font-family:'Archivo',sans-serif">04</span><span>Momento memorable: en la sección de Lorena, tres fotos verticales se desplazan a velocidades distintas y quedan alineadas al final del scroll.</span></div>
+            <div style="display:flex;gap:12px"><span style="color:#C9A227;font-family:'Archivo',sans-serif">05</span><span>Transiciones de 400–600 ms con curva suave. Ningún elemento aparece de golpe.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+</body>
+</html>

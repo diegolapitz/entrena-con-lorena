@@ -1,0 +1,53 @@
+---
+import SectionMarker from "./SectionMarker.astro";
+import { commercialHref, hasCheckout, priceDisplay, siteConfig } from "../config/site";
+
+const { purchase, course } = siteConfig;
+---
+
+<section id="comprar" class="purchase section-light" aria-labelledby="purchase-title" data-pricing>
+  <div class="page-shell purchase__grid">
+    <div class="purchase__copy">
+      <SectionMarker number="04" label="Comprar" tone="light" />
+      <h2 id="purchase-title" class="display-heading" data-reveal>{purchase.heading}</h2>
+      <p data-reveal>{purchase.description}</p>
+    </div>
+
+    <article class="purchase-card" data-reveal>
+      <p class="micro-label">{purchase.cardLabel}</p>
+      <p class:list={["purchase-card__price", !course.price && "purchase-card__price--pending"]}>
+        {priceDisplay}
+      </p>
+      <p class="purchase-card__terms">
+        {course.price ? "Pago único · sin suscripción" : "El valor final todavía no fue definido"}
+      </p>
+      <ul>
+        {purchase.features.map((feature) => <li>{feature}</li>)}
+      </ul>
+      {hasCheckout ? (
+        <a
+          class="button button--block"
+          href={commercialHref}
+          data-commercial-cta
+          data-checkout-final
+          data-cta-position="ficha"
+          data-checkout-ready="true"
+        >
+          {purchase.cta}
+        </a>
+      ) : (
+        <button
+          class="button button--block button--pending"
+          type="button"
+          data-commercial-cta
+          data-checkout-final
+          data-cta-position="ficha"
+          data-checkout-ready="false"
+        >
+          {purchase.unavailableCta}
+        </button>
+      )}
+      <p class="purchase-card__note">{course.paymentNote}</p>
+    </article>
+  </div>
+</section>

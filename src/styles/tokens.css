@@ -1,0 +1,36 @@
+:root {
+  --ink: #0e0f0d;
+  --charcoal: #1d1f1b;
+  --charcoal-deep: #16180f;
+  --olive: #4a503c;
+  --olive-light: #9aa377;
+  --cream: #ede6d6;
+  --cream-deep: #d8d0be;
+  --gold: #c8a45c;
+  --gold-hover: #dcbb79;
+  --gold-dark: #7a5f1e;
+  --gold-olive: #dfc58a;
+  --text-dark: #121311;
+  --text-dark-muted: #44443c;
+  --text-cream-muted: rgba(237, 230, 214, 0.84);
+  --text-cream-faint: rgba(237, 230, 214, 0.66);
+  --rule-dark: rgba(237, 230, 214, 0.18);
+  --rule-light: rgba(18, 19, 17, 0.2);
+
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Jost", Arial, sans-serif;
+
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+  --content-max: 87.5rem;
+  --faq-max: 62.5rem;
+  --section-space: clamp(4rem, 11vh, 8.25rem);
+
+  --ease-out: cubic-bezier(0.22, 0.7, 0.3, 1);
+  --duration-fast: 240ms;
+  --duration-medium: 380ms;
+  --duration-reveal: 620ms;
+
+  --z-header: 60;
+  --z-buy-bar: 70;
+  --z-dialog: 90;
+}

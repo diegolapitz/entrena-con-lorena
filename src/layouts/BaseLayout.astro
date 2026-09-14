@@ -1,0 +1,71 @@
+---
+import "@fontsource/barlow-condensed/latin-400.css";
+import "@fontsource/barlow-condensed/latin-500.css";
+import "@fontsource/barlow-condensed/latin-600.css";
+import "@fontsource/barlow-condensed/latin-700.css";
+import "@fontsource/jost/latin-300.css";
+import "@fontsource/jost/latin-400.css";
+import "@fontsource/jost/latin-500.css";
+import "../styles/global.css";
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = siteConfig.seo.title,
+  description = siteConfig.seo.description,
+} = Astro.props;
+
+const configuredSite = siteConfig.siteUrl || Astro.site?.toString() || "";
+const canonical = configuredSite ? new URL(Astro.url.pathname, configuredSite).toString() : "";
+const ogImage = configuredSite
+  ? new URL(siteConfig.seo.ogImage, configuredSite).toString()
+  : "";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: siteConfig.seo.title,
+  description,
+  inLanguage: siteConfig.locale,
+  provider: {
+    "@type": "Person",
+    name: siteConfig.instructorName,
+  },
+};
+---
+
+<!doctype html>
+<html lang={siteConfig.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content={siteConfig.seo.themeColor} />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark light" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+import { commercialHref, hasCheckout, priceDisplay, siteConfig } from "../config/site";
+
+const { hero, images, course } = siteConfig;
+---
+
+<section id="top" class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="hero__media" aria-hidden="true">
+    <picture>
+      <source
+        media="(max-width: 700px)"
+        srcset={`${images.hero.mobileSmall} 720w, ${images.hero.mobile} 1122w`}
+        sizes="100vw"
+      />
+      <img
+        src={images.hero.desktop}
+        srcset={`${images.hero.desktopSmall} 960w, ${images.hero.desktop} 1672w`}
+        sizes="100vw"
+        width="1672"
+        height="941"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="hero__content page-shell">
+    <div class="hero__copy">
+      <p class="claim">
+        <span class="claim__rule" aria-hidden="true"></span>
+        {hero.claim}
+      </p>
+      <h1 id="hero-title" class="hero__title">
+        <span class="hero__title-lead">
+          {hero.titleLead.map((line) => <span>{line} </span>)}
+        </span>
+        <span class="text-olive-light">{hero.titleAccent}</span>
+      </h1>
+      <p class="hero__description">{hero.description}</p>
+      <div class="hero__actions">
+        <a
+          class="button"
+          href={commercialHref}
+          data-commercial-cta
+          data-cta-position="hero"
+          data-checkout-ready={String(hasCheckout)}
+        >
+          {hero.primaryCta}
+        </a>
+        <a class="text-link text-link--dark" href="#contenidos">{hero.secondaryCta}</a>
+      </div>
+      {course.price && <p class="hero__price" data-price-copy>{priceDisplay} · pago único</p>}
+    </div>
+  </div>
+
+  <ul class="hero__facts" aria-label="Resumen del curso">
+    {hero.facts.map((fact) => <li>{fact}</li>)}
+  </ul>
+</section>
