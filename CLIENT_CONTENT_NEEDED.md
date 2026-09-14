@@ -15,11 +15,10 @@ Estos datos están deliberadamente marcados como pendientes en la landing. No se
 
 # MEJORA OPCIONAL
 
-- Video corto real de entrenamiento para evaluar como alternativa al hero estático, únicamente si mantiene legibilidad y buen rendimiento.
+- Video corto real y autorizado de Lorena entrenando para reemplazar el clip demostrativo de stock del hero. Debe permitir un recorte horizontal y otro vertical, sin logos de terceros.
 - Fotografías reales de Lorena y de las clases para reemplazar gradualmente las imágenes editoriales transitorias.
 - Testimonios con texto final, nombre y consentimiento explícito de cada persona. La sección permanece oculta mientras no existan.
 - Frase personal de Lorena para el bloque de presentación.
 - Identidad gráfica final —logo, monograma o favicon— si existe una versión aprobada distinta del wordmark tipográfico actual.
 - Imagen social específica para campañas y variantes de anuncios.
 - Herramienta de analítica elegida y criterios de consentimiento antes de conectarla a los eventos ya preparados.
-

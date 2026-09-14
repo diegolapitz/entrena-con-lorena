@@ -15,6 +15,7 @@
 - En estado borrador, la acción final es un botón delineado “Compra aún no habilitada”; al completar precio y checkout vuelve a ser un enlace de compra activo.
 - La barra móvil aparece después del hero y se retira al entrar en la zona de compra o el cierre, para no tapar decisiones importantes.
 - Mientras la barra móvil está visible, el CTA duplicado del header se oculta y el foco conserva margen inferior.
+- Al desplazarse, el header deja de ser una franja completa y pasa a ser un rail flotante oliva: borde latón, transparencia, textura sutil de agarre y progreso de lectura. En mobile se contrae a la marca cuando ya está visible la compra inferior.
 - El método usa un título diferente al hero para evitar repetición: “Tres principios para ordenar tu entrenamiento.”
 - El cierre usa una invitación concreta —“Tu próximo entrenamiento empieza acá.”— en vez de atribuir resultados o ahorro de tiempo no validados.
 
@@ -22,7 +23,8 @@
 
 - Se generó una familia editorial coherente para hero, método y cierre. Son imágenes de campaña transitorias y no representan a Lorena.
 - La imagen de la sección Lorena es deliberadamente un estudio vacío con rótulo discreto de estado. Nunca se presenta una persona sintética como la instructora.
-- Se evaluó video para el hero y se descartó en esta entrega: no había material real autorizado y una animación sintética empeoraba credibilidad, peso y estabilidad visual. La fotografía responsive es más fiel y más rápida.
+- El hero incorpora un clip de stock de entrenamiento en blanco y negro como demostración, sin presentarlo como material de Lorena. La fotografía responsive sigue debajo como póster y fallback.
+- El video se sirve localmente en dos resoluciones, entra con fundido después de la carga y no se solicita con `prefers-reduced-motion`, `prefers-reduced-data`, ahorro de datos o conexiones 2G. Un control visible permite pausar y reanudar el fondo.
 - Las imágenes se exportaron en WebP con variantes de escritorio/móvil. El hero carga con prioridad; el resto, de forma diferida.
 
 ## Arquitectura
@@ -30,7 +32,7 @@
 - Se reimplementó como Astro estático, sin `support.js`, `image-slot.js` ni el runtime React/Claude del prototipo.
 - Las fuentes se sirven desde el proyecto. No hay dependencias de Google Fonts ni solicitudes a servicios de terceros durante la carga.
 - FAQ, diálogo, navegación y barra móvil funcionan con JavaScript progresivo; el contenido principal queda visible si el script falla.
-- Los eventos `cta_click`, `checkout_click`, `faq_open` y `view_pricing` están preparados como eventos locales y `dataLayer` opcional, sin conectar un proveedor ni crear cookies.
+- Los eventos `cta_click`, `checkout_click`, `faq_open`, `view_pricing` y `hero_motion_toggle` están preparados como eventos locales y `dataLayer` opcional, sin conectar un proveedor ni crear cookies.
 
 ## Desviaciones deliberadas
 

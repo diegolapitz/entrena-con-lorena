@@ -1,12 +1,12 @@
 ---
 import { commercialHref, hasCheckout, priceDisplay, siteConfig } from "../config/site";
 
-const { hero, images, course } = siteConfig;
+const { hero, images, videos, course } = siteConfig;
 ---
 
 <section id="top" class="hero" aria-labelledby="hero-title" data-hero>
-  <div class="hero__media" aria-hidden="true">
-    <picture>
+  <div class="hero__media" aria-hidden="true" data-hero-media>
+    <picture class="hero__poster" data-hero-poster>
       <source
         media="(max-width: 700px)"
         srcset={`${images.hero.mobileSmall} 720w, ${images.hero.mobile} 1122w`}
@@ -24,6 +24,18 @@ const { hero, images, course } = siteConfig;
         decoding="async"
       />
     </picture>
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+      tabindex="-1"
+      data-hero-video
+      data-src-desktop={videos.hero.desktop}
+      data-src-mobile={videos.hero.mobile}
+    ></video>
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
 
@@ -59,4 +71,23 @@ const { hero, images, course } = siteConfig;
   <ul class="hero__facts" aria-label="Resumen del curso">
     {hero.facts.map((fact) => <li>{fact}</li>)}
   </ul>
+
+  <button
+    class="hero__motion-toggle"
+    type="button"
+    aria-pressed="false"
+    aria-label="Pausar animación de fondo"
+    data-hero-motion-toggle
+    hidden
+  >
+    <span class="hero__motion-icon" aria-hidden="true">
+      <svg class="hero__motion-pause" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M4.25 3.25h2.5v9.5h-2.5zm5 0h2.5v9.5h-2.5z" fill="currentColor"></path>
+      </svg>
+      <svg class="hero__motion-play" viewBox="0 0 16 16" width="16" height="16">
+        <path d="m5 3.1 7.2 4.9L5 12.9z" fill="currentColor"></path>
+      </svg>
+    </span>
+    <span data-hero-motion-label>Pausar fondo</span>
+  </button>
 </section>

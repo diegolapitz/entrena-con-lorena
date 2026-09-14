@@ -176,6 +176,12 @@ export const siteConfig = {
       small: `${assetBase}/assets/images/final-training-960.webp`,
     },
   },
+  videos: {
+    hero: {
+      desktop: `${assetBase}/assets/video/hero-training-mixkit-50972.mp4`,
+      mobile: `${assetBase}/assets/video/hero-training-mixkit-50972-mobile.mp4`,
+    },
+  },
 } as const;
 
 export const hasCheckout = Boolean(

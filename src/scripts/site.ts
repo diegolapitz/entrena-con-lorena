@@ -8,6 +8,13 @@ declare global {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+type NavigatorWithConnection = Navigator & {
+  connection?: {
+    saveData?: boolean;
+    effectiveType?: string;
+  };
+};
+
 function trackEvent(event: string, payload: AnalyticsPayload = {}) {
   const detail = { event, ...payload };
   window.dispatchEvent(new CustomEvent("lorena:analytics", { detail }));
@@ -106,6 +113,96 @@ function setupPricingView() {
   observer.observe(pricing);
 }
 
+function setupHeroVideo() {
+  const media = document.querySelector<HTMLElement>("[data-hero-media]");
+  const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-hero-motion-toggle]");
+  const label = toggle?.querySelector<HTMLElement>("[data-hero-motion-label]");
+  if (!media || !video || !toggle || !label) return;
+
+  const reducedData = window.matchMedia("(prefers-reduced-data: reduce)");
+  const mobileViewport = window.matchMedia("(max-width: 45rem)");
+  const connection = (navigator as NavigatorWithConnection).connection;
+  const constrainedConnection =
+    connection?.saveData === true ||
+    connection?.effectiveType === "slow-2g" ||
+    connection?.effectiveType === "2g";
+  let sourceAssigned = false;
+  let manuallyPaused = false;
+
+  const motionAllowed = () => !reducedMotion.matches;
+  const videoAllowed = () => motionAllowed() && !reducedData.matches && !constrainedConnection;
+
+  const updateControl = () => {
+    const paused = manuallyPaused || !motionAllowed();
+    media.classList.toggle("is-paused", paused);
+    toggle.hidden = !motionAllowed();
+    toggle.setAttribute("aria-pressed", String(paused));
+    toggle.setAttribute(
+      "aria-label",
+      paused ? "Reanudar animación de fondo" : "Pausar animación de fondo",
+    );
+    label.textContent = paused ? "Reanudar fondo" : "Pausar fondo";
+  };
+
+  const playVideo = async () => {
+    if (!sourceAssigned || manuallyPaused || !videoAllowed()) return;
+    try {
+      await video.play();
+    } catch {
+      media.classList.remove("is-video-ready");
+    }
+  };
+
+  const loadVideo = () => {
+    if (sourceAssigned || !videoAllowed()) return;
+    const source = mobileViewport.matches ? video.dataset.srcMobile : video.dataset.srcDesktop;
+    if (!source) return;
+
+    sourceAssigned = true;
+    video.src = source;
+    video.load();
+    void playVideo();
+  };
+
+  video.addEventListener("playing", () => {
+    if (!manuallyPaused && motionAllowed()) media.classList.add("is-video-ready");
+  });
+  video.addEventListener("error", () => {
+    media.classList.remove("is-video-ready");
+    media.classList.add("is-video-failed");
+  });
+
+  toggle.addEventListener("click", () => {
+    manuallyPaused = !manuallyPaused;
+    if (manuallyPaused) video.pause();
+    else void playVideo();
+    updateControl();
+    trackEvent("hero_motion_toggle", { paused: manuallyPaused });
+  });
+
+  const handleMotionPreference = () => {
+    if (!motionAllowed()) {
+      video.pause();
+      media.classList.remove("is-video-ready");
+    } else if (!manuallyPaused) {
+      if (sourceAssigned) void playVideo();
+      else loadVideo();
+    }
+    updateControl();
+  };
+
+  reducedMotion.addEventListener("change", handleMotionPreference);
+  reducedData.addEventListener("change", () => {
+    if (!reducedData.matches) loadVideo();
+  });
+
+  updateControl();
+  const queueVideoLoad = () => window.requestAnimationFrame(loadVideo);
+  if (document.readyState === "complete") queueVideoLoad();
+  else window.addEventListener("load", queueVideoLoad, { once: true });
+}
+
 function setupScrollState() {
   const header = document.querySelector<HTMLElement>("[data-site-header]");
   const hero = document.querySelector<HTMLElement>("[data-hero]");
@@ -119,7 +216,10 @@ function setupScrollState() {
     frame = 0;
     const y = window.scrollY;
     const viewportHeight = window.innerHeight;
-    const headerSolid = y > viewportHeight * 0.7;
+    const scrollableDistance = document.documentElement.scrollHeight - viewportHeight;
+    const scrollProgress = scrollableDistance > 0 ? Math.min(1, y / scrollableDistance) : 0;
+    const headerSolid = y > 24;
+    header.style.setProperty("--scroll-progress", String(scrollProgress));
     header.classList.toggle("is-solid", headerSolid);
 
     const heroPassed = y > hero.offsetHeight * 0.9;
@@ -149,6 +249,7 @@ setupFaq();
 setupCheckout();
 setupReveal();
 setupPricingView();
+setupHeroVideo();
 setupScrollState();
 
 reducedMotion.addEventListener("change", () => {

@@ -31,11 +31,14 @@ Todo el contenido, precio, checkout, enlaces y flags viven en `src/config/site.t
 - Precio, checkout, acceso, videos y PDFs: `course`. Reemplazar `lessons` por los 10 títulos/duraciones reales y cargar cada descargable en `course.downloadables`.
 - Textos: bloques `hero`, `method`, `instructor`, `purchase` y `finalCta`.
 - Hero, Lorena y demás fotos: bloque `images`.
+- Video del hero: bloque `videos.hero`. Tiene archivos separados para escritorio y móvil.
 - Testimonios: `testimonials.items`; activar `testimonials.show` sólo con consentimiento.
 - Preguntas: `faq`.
 - Redes y legales: `socialLinks` y `legalLinks`.
 
 Las imágenes están en `public/assets/images/`. El retrato real de Lorena puede reemplazar los dos archivos `instructor-placeholder-*` manteniendo sus nombres, o actualizarse desde la misma configuración.
+
+El video demostrativo está en `public/assets/video/`. Se carga después de la página y sólo cuando el navegador no solicita movimiento reducido ni ahorro de datos; la imagen responsive del hero permanece como póster y fallback. La procedencia y licencia están registradas en `ASSET_SOURCES.md`.
 
 Los PDFs finales pueden guardarse en `public/assets/downloads/` y vincularse desde `course.downloadables`.
 
@@ -47,6 +50,6 @@ Antes de publicar, revisar `CLIENT_CONTENT_NEEDED.md`. Las decisiones de impleme
 - `src/components/`: secciones independientes.
 - `src/config/site.ts`: fuente única de contenido y configuración comercial.
 - `src/styles/`: sistema visual y responsive.
-- `src/scripts/site.ts`: FAQ, navegación, sticky de compra y eventos analíticos.
-- `tests/landing.spec.ts`: pruebas de navegación, compra, FAQ, imágenes y responsive.
+- `src/scripts/site.ts`: FAQ, video y control de movimiento, navegación flotante, sticky de compra y eventos analíticos.
+- `tests/landing.spec.ts`: pruebas de navegación, compra, FAQ, video/fallback, imágenes y responsive.
 - `qa/screenshots/`: baseline, ciclos de revisión y capturas finales.

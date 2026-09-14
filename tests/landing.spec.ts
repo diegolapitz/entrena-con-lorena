@@ -162,6 +162,111 @@ test("todas las imágenes resuelven y cargan", async ({ page }, testInfo) => {
   expect(media.positions.every(Boolean)).toBe(true);
 });
 
+test("el video del hero reproduce, conserva el póster y puede pausarse", async ({ page }, testInfo) => {
+  await openLanding(page);
+
+  const media = page.locator("[data-hero-media]");
+  const video = page.locator("[data-hero-video]");
+  const toggle = page.locator("[data-hero-motion-toggle]");
+
+  await expect(video).toHaveAttribute("autoplay", "");
+  await expect(video).toHaveAttribute("muted", "");
+  await expect(video).toHaveAttribute("loop", "");
+  await expect(video).toHaveAttribute("playsinline", "");
+  await expect(page.locator("[data-hero-poster] img")).toBeVisible();
+  await expect(media).toHaveClass(/is-video-ready/);
+  await expect(toggle).toBeVisible();
+
+  const playing = await video.evaluate((element) => {
+    const videoElement = element as HTMLVideoElement;
+    return {
+      currentSrc: videoElement.currentSrc,
+      currentTime: videoElement.currentTime,
+      paused: videoElement.paused,
+      readyState: videoElement.readyState,
+    };
+  });
+  expect(playing.currentSrc).toContain(
+    testInfo.project.name.includes("mobile") ? "hero-training-mixkit-50972-mobile" : "hero-training-mixkit-50972.mp4",
+  );
+  expect(playing.currentTime).toBeGreaterThan(0);
+  expect(playing.paused).toBe(false);
+  expect(playing.readyState).toBeGreaterThanOrEqual(3);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(toggle).toHaveAttribute("aria-label", "Reanudar animación de fondo");
+  const pausedAt = await video.evaluate((element) => (element as HTMLVideoElement).currentTime);
+  await page.waitForTimeout(350);
+  const stillAt = await video.evaluate((element) => (element as HTMLVideoElement).currentTime);
+  expect(Math.abs(stillAt - pausedAt)).toBeLessThan(0.08);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect
+    .poll(() => video.evaluate((element) => (element as HTMLVideoElement).currentTime))
+    .toBeGreaterThan(stillAt + 0.1);
+});
+
+test("el hero no descarga ni muestra video con movimiento reducido", async ({ page }) => {
+  const mediaRequests: string[] = [];
+  page.on("request", (request) => {
+    if (request.resourceType() === "media") mediaRequests.push(request.url());
+  });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await openLanding(page);
+
+  await expect(page.locator("[data-hero-video]")).toHaveJSProperty("currentSrc", "");
+  await expect(page.locator("[data-hero-motion-toggle]")).toBeHidden();
+  await expect(page.locator("[data-hero-poster] img")).toBeVisible();
+  expect(mediaRequests).toEqual([]);
+});
+
+test("el hero evita el video cuando el navegador pide ahorrar datos", async ({ page }) => {
+  const mediaRequests: string[] = [];
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "connection", {
+      configurable: true,
+      value: { saveData: true, effectiveType: "4g" },
+    });
+  });
+  page.on("request", (request) => {
+    if (request.resourceType() === "media") mediaRequests.push(request.url());
+  });
+  await openLanding(page);
+
+  await expect(page.locator("[data-hero-video]")).toHaveJSProperty("currentSrc", "");
+  await expect(page.locator("[data-hero-poster] img")).toBeVisible();
+  expect(mediaRequests).toEqual([]);
+});
+
+test("la navegación se convierte en un rail flotante al desplazarse", async ({ page }) => {
+  await openLanding(page);
+
+  const header = page.locator("[data-site-header]");
+  await expect(header).not.toHaveClass(/is-solid/);
+  await page.evaluate(() => window.scrollTo({ top: 96, behavior: "instant" }));
+  await expect(header).toHaveClass(/is-solid/);
+
+  const appearance = await header.evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    const styles = getComputedStyle(element);
+    return {
+      width: rect.width,
+      viewportWidth: window.innerWidth,
+      top: rect.top,
+      radius: Number.parseFloat(styles.borderRadius),
+      backdrop: styles.backdropFilter,
+      progress: Number.parseFloat(styles.getPropertyValue("--scroll-progress")),
+    };
+  });
+  expect(appearance.width).toBeLessThan(appearance.viewportWidth);
+  expect(appearance.top).toBeGreaterThan(0);
+  expect(appearance.radius).toBeGreaterThan(0);
+  expect(appearance.backdrop).not.toBe("none");
+  expect(appearance.progress).toBeGreaterThan(0);
+});
+
 test("el hero conserva el CTA en el primer viewport móvil horizontal", async ({ page }) => {
   await page.setViewportSize({ width: 667, height: 375 });
   await openLanding(page);
@@ -190,6 +295,7 @@ test("la barra de compra móvil aparece después del hero y se retira al llegar 
   await expect(sticky).toHaveClass(/is-visible/);
   await expect(sticky).not.toHaveAttribute("inert", "");
   await expect(headerBuy).toHaveCSS("visibility", "hidden");
+  await expect.poll(() => page.locator("[data-site-header]").evaluate((element) => element.getBoundingClientRect().width)).toBeLessThan(180);
 
   await page.locator("#comprar").scrollIntoViewIfNeeded();
   await expect(sticky).not.toHaveClass(/is-visible/);
